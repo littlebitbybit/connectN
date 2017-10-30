@@ -22,6 +22,12 @@ def check_win(board, N, player):
     :param N: number of pieces that need to be connected for victory.
     :param player: Either "O" or "X".
     :return: True if player has won the game and False otherwise.
+
+    >>> from main import game
+    >>> game(rows=4, cols=4, n=3, plays=(0, 1, 0, 1, 0))  # end-to-end for vertical win
+    'O'
+    >>> game(rows=4, cols=4, n=3, plays=(0, 0, 1, 1, 2))  # end-to-end for horizontal win
+    'X'
     """
     return check_win_axis(board, N, player, "row") or check_win_axis(board, N, player, "col") or \
            check_win_diag(board, N, player)
