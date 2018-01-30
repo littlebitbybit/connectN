@@ -13,6 +13,7 @@ def create_board(rows: int, cols: int) -> List[List]:
     """
     return [['-' for i in range(cols)] for j in range(rows)]
 
+
 def find_empty_row(board: List[List], col: int) -> int:
     """Returns first empty row (from the bottom).
 
@@ -34,12 +35,14 @@ def find_empty_row(board: List[List], col: int) -> int:
             break
     return row
 
+
 def display_board(board):
     """Display the board.
 
     :param board: board object
     """
     print('\n'.join([str(row) for row in board[::-1]]))
+
 
 def move(board: List[List], player: str, auto_play=None) -> bool:
     """Make a move. Prompt the user for input.
@@ -52,8 +55,6 @@ def move(board: List[List], player: str, auto_play=None) -> bool:
     """
     placed = False
     cols = len(board[0])
-    if auto_play is None:
-        display_board(board)
     while not placed:
         if auto_play is not None:
             col = auto_play
@@ -70,6 +71,7 @@ def move(board: List[List], player: str, auto_play=None) -> bool:
         if not placed:
             print('Cannot place piece there!')
 
+
 def insert(board: List[List], col: int, player: str) -> bool:
     """Insert the given player piece at the respective column, for the board.
 
@@ -84,7 +86,8 @@ def insert(board: List[List], col: int, player: str) -> bool:
     board[row][col] = player
     return True
 
-def game(rows: int=4, cols: int=4, n: int=3, plays=()) -> str:
+
+def game(rows: int=4, cols: int=4, n: int=4, plays=()) -> str:
     """Create and launch main game loop.
 
     :param rows: number of rows
@@ -93,11 +96,13 @@ def game(rows: int=4, cols: int=4, n: int=3, plays=()) -> str:
     :param plays: series of column indices representing moves
     :return: who won
     """
-    assert n < min(rows, cols), 'Impossible to connect %d with %d rows, %d columns!' % (n, rows, cols)
+    assert n <= min(rows, cols), 'Impossible to connect %d with %d rows, %d columns!' % (n, rows, cols)
     board = create_board(rows, cols)
     player = 'o'
     win = False
     play_index = 0
+    if len(plays) == 0:
+        display_board(board)
     while not win:
         auto_play = plays[play_index] if play_index < len(plays) else None
         move(board, player, auto_play)
@@ -106,11 +111,14 @@ def game(rows: int=4, cols: int=4, n: int=3, plays=()) -> str:
         win = winner(board, n)
         if play_index >= len(plays) and plays:
             break
+        elif auto_play is None:
+            display_board(board)
     return win
 
+
 if __name__ == '__main__':
-     win = game(4, 4)
-     if not win:
-         print('No one won!')
-     else:
-         print('Player %s won!' % win)
+    win = game(4, 4)
+    if not win:
+        print('No one won!')
+    else:
+        print('Player %s won!' % win)
