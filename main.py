@@ -96,7 +96,7 @@ def game(rows: int=4, cols: int=4, n: int=3, plays=()) -> str:
     assert n < min(rows, cols), 'Impossible to connect %d with %d rows, %d columns!' % (n, rows, cols)
     board = create_board(rows, cols)
     player = 'o'
-    win = None
+    win = False
     play_index = 0
     while not win:
         auto_play = plays[play_index] if play_index < len(plays) else None

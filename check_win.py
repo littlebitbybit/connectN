@@ -7,10 +7,10 @@ def winner(board, N):
     :param N: number of pieces that need to be connected for victory.
     :return: "O" if "O" has won, "X" if "X" has won, and False if no one has won the game.
     """
-    if check_win(board, N, "O"):
-        return "O"
-    elif check_win(board, N, "X"):
-        return "X"
+    if check_win(board, N, "o"):
+        return "o"
+    elif check_win(board, N, "x"):
+        return "x"
     else:
         return False
 
@@ -22,19 +22,13 @@ def check_win(board, N, player):
     :param N: number of pieces that need to be connected for victory.
     :param player: Either "O" or "X".
     :return: True if player has won the game and False otherwise.
-
-    >>> from main import game
-    >>> game(rows=4, cols=4, n=3, plays=(0, 1, 0, 1, 0))  # end-to-end for vertical win
-    'O'
-    >>> game(rows=4, cols=4, n=3, plays=(0, 0, 1, 1, 2))  # end-to-end for horizontal win
-    'X'
     """
     return check_win_axis(board, N, player, "row") or check_win_axis(board, N, player, "col") or \
-           check_win_diag(board, N, player)
+        check_win_diag(board, N, player)
 
 def check_win_axis(board, N, player, axis):
     """
-    Checks every row to see if there N connected pieces belonging to player in the row.
+    Checks a specified axis to see if there N connected pieces belonging to player in that axis.
 
     :param board: A list of lists describing the current board state.
     :param N: number of pieces that need to be connected for victory.
@@ -46,12 +40,12 @@ def check_win_axis(board, N, player, axis):
     num_cols = len(board[0])
 
     axis_length = num_rows if axis == "row" else num_cols
-    max_index = num_cols if axis == "row" else num_rows
+    max_index = num_cols if axis == "col" else num_rows
 
     for i in range(axis_length):
         streak = 0
         for j in range(max_index):
-            if board[i][j] == player:
+            if (axis == "col" and board[i][j] == player) or (axis == "row" and board[j][i] == player):
                 streak += 1
                 if streak == N:
                     return True
@@ -72,28 +66,26 @@ def check_win_diag(board, N, player):
     num_rows = len(board)
     num_cols = len(board[0])
     # searching top-left to bottom-right diagonals first
-    for i in range(num_rows):
-        if (i + 1) < N:
+    for i in range(num_cols):
+        if i > (num_cols - N):
             continue
-        streak = 0
-        for j in range(num_cols):
-            if board[i][N - i - j] == player:
-                streak += 1
-                if streak == N:
-                    return True
-            else:
-                streak = 0
+        for j in range(num_rows):
+            if j > (num_rows - N):
+                continue
+            for k in range(N):
+                if board[i + k][j + k] == player:
+                    if k + 1 == N:
+                        return True
 
-    for i in range(num_rows):
-        if (i + 1) < N:
+    for i in range(num_cols):
+        if i < (N - 1):
             continue
-        streak = 0
-        for j in range(0, num_cols, -1):
-            if board[i][N - i - j] == player:
-                streak += 1
-                if streak == N:
-                    return True
-            else:
-                streak = 0
+        for j in range(num_rows):
+            if j > (num_rows - N):
+                continue
+            for k in range(N):
+                if board[i - k][j + k] == player:
+                    if k + 1 == N:
+                        return True
 
     return False
