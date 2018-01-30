@@ -1,17 +1,17 @@
 def winner(board, N):
     """
-    Checks if "O" or "X" have won the game. Returns "O" if "O" has won, "X" if
-    "X" has won, and False if no one has won the game.
+    Checks if 'o' or 'x' have won the game. Returns 'o' if 'o' has won, 'x' if
+    'x' has won, and False if no one has won the game.
 
     :param board: A list of lists describing the current board state.
     :param N: number of pieces that need to be connected for victory.
-    :return: "O" if "O" has won, "X" if "X" has won, and False if no one has
+    :return: 'o' if 'o' has won, 'x' if 'x' has won, and False if no one has
              won the game.
     """
-    if check_win(board, N, "o"):
-        return "o"
-    elif check_win(board, N, "x"):
-        return "x"
+    if check_win(board, N, 'o'):
+        return 'o'
+    elif check_win(board, N, 'x'):
+        return 'x'
     else:
         return False
 
@@ -22,7 +22,7 @@ def check_win(board, N, player):
 
     :param board: A list of lists describing the current board state.
     :param N: number of pieces that need to be connected for victory.
-    :param player: Either "O" or "X".
+    :param player: Either 'o' or 'x'.
     :return: True if player has won the game and False otherwise.
     """
     return check_win_axis(board, N, player, "row") or \
@@ -37,7 +37,7 @@ def check_win_axis(board, N, player, axis):
 
     :param board: A list of lists describing the current board state.
     :param N: number of pieces that need to be connected for victory.
-    :param player: the player to consider, i.e., "O" or "X".
+    :param player: the player to consider, i.e., 'o' or 'x'.
     :param axis: the axis to search on, i.e., "row" or "col"
     :return: True if player has won the game in any row and False otherwise.
 
@@ -75,7 +75,7 @@ def check_win_diag(board, N, player):
 
     :param board: A list of lists describing the current board state.
     :param N: number of pieces that need to be connected for victory.
-    :param player: the player to consider, i.e., "O" or "X".
+    :param player: the player to consider, i.e., 'o' or 'x'.
     :return: True if player has won the game in any diagonal and False
              otherwise.
 

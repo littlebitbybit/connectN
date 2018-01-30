@@ -95,6 +95,15 @@ def game(rows: int=4, cols: int=4, n: int=4, plays=()) -> str:
     :param n: number of pieces needed to win the game
     :param plays: series of column indices representing moves
     :return: who won
+
+    >>> game(rows=4, cols=4, n=3, plays=(0, 1, 0, 1, 0))
+    'o'
+    >>> game(rows=4, cols=4, n=3, plays=(0, 0, 1, 1, 2))
+    'o'
+    >>> game(rows=4, cols=4, n=3, plays=(0, 1, 1, 1, 2, 2, 2))
+    'o'
+    >>> game(rows=4, cols=4, n=3, plays=(2, 1, 1, 1, 0, 0, 0))
+    'o'
     """
     assert n <= min(rows, cols), 'Impossible to connect %d with %d rows, %d columns!' % (n, rows, cols)
     board = create_board(rows, cols)
