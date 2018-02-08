@@ -11,7 +11,10 @@ def create_board(rows: int, cols: int) -> List[List]:
     :param cols: number of cols
     :return: list of lists for board
     """
-    return [['-' for i in range(cols)] for j in range(rows)]
+    # Write a function that creates a blank board with the desired number of rows and columns.
+    # Fill each entry in the board with '-'
+    return None
+    # return [['-' for i in range(cols)] for j in range(rows)]
 
 
 def find_empty_row(board: List[List], col: int) -> int:
@@ -28,12 +31,20 @@ def find_empty_row(board: List[List], col: int) -> int:
     >>> find_empty_row(board, 1)
     0
     """
-    row = None
-    for i in range(len(board)):
-        if board[i][col] == '-':
-            row = i
-            break
-    return row
+    # Write a function to find the first row that's empty at the desired column. e.g. for the following board
+    # - - -
+    # - - -
+    # x - -
+    # find_empty_row(board, 0) should return 1
+    # find_empty_row(board, 1) should return 0
+    return None
+
+    # row = None
+    # for i in range(len(board)):
+    #     if board[i][col] == '-':
+    #         row = i
+    #         break
+    # return row
 
 
 def display_board(board):
@@ -80,11 +91,16 @@ def insert(board: List[List], col: int, player: str) -> bool:
     :param player: marker for player
     :return: whether or not the placement was successful
     """
-    row = find_empty_row(board, col)
-    if row is None:
-        return False
-    board[row][col] = player
-    return True
+    # Write a function to place a specified board piece in a desired column.
+    # Return True if the piece was successfully placed.
+    # If the column is already full, you should not a place a piece anywhere and return False.
+    # Hint: what previous functions you created could be used here?
+    return None
+    # row = find_empty_row(board, col)
+    # if row is None:
+    #     return False
+    # board[row][col] = player
+    # return True
 
 
 def game(rows: int=4, cols: int=4, n: int=4, plays=()) -> str:

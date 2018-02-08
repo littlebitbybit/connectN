@@ -8,9 +8,9 @@ def winner(board, N):
     :return: 'o' if 'o' has won, 'x' if 'x' has won, and False if no one has
              won the game.
     """
-    if check_win(board, N, 'o'):
+    if check_win(board, N, 'o'): # Check if player 'o' won the game
         return 'o'
-    elif check_win(board, N, 'x'):
+    elif check_win(board, N, 'x'): # Check if player 'x' won the game
         return 'x'
     else:
         return False
@@ -25,9 +25,13 @@ def check_win(board, N, player):
     :param player: Either 'o' or 'x'.
     :return: True if player has won the game and False otherwise.
     """
-    return check_win_axis(board, N, player, "row") or \
-        check_win_axis(board, N, player, "col") or \
-        check_win_diag(board, N, player)
+    # Write a function that returns True if the desired player has won the game by connecting N pieces and returns
+    # False otherwise.
+    # Hint: Use functions that have already been defined.
+    return None
+    # return check_win_axis(board, N, player, "row") or \
+    #     check_win_axis(board, N, player, "col") or \
+    #     check_win_diag(board, N, player)
 
 
 def check_win_axis(board, N, player, axis):
@@ -58,14 +62,21 @@ def check_win_axis(board, N, player, axis):
         board = [[board[i][j] for i in range(n_rows)] for j in range(n_cols)]
         n_rows, n_cols = n_cols, n_rows
 
-    for i in range(n_rows):
-        streak = 0
-        for j in range(n_cols):
-            streak = streak + 1 if board[i][j] == player else 0
-            if streak == N:
-                return True
-
-    return False
+    # Complete the function below.
+    # The function should return True if there is any row in which the desired player has N connected piece and
+    # return False otherwise.
+    #
+    # Do not worry about checking for wins in columns. That's what the small block of code right above does. If you're
+    # curious about why this works, ask us!
+    return None
+    # for i in range(n_rows):
+    #     streak = 0
+    #     for j in range(n_cols):
+    #         streak = streak + 1 if board[i][j] == player else 0
+    #         if streak == N:
+    #             return True
+    #
+    # return False
 
 
 def check_win_diag(board, N, player):
